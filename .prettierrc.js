@@ -3,12 +3,12 @@ module.exports = {
   tabWidth: 2,
   semi: true,
   singleQuote: true,
-  trailingComma: "all",
-  arrowParens: "always",
-  endOfLine: "lf",
+  trailingComma: 'all',
+  arrowParens: 'always',
+  endOfLine: 'auto',
   overrides: [
     {
-      files: ["*.css", "*.less"],
+      files: ['*.css', '*.less'],
       options: {
         singleQuote: false,
       },
