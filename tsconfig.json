@@ -11,6 +11,9 @@
     "esModuleInterop": true,
     "newLine": "lf",
     "types": ["node"],
-    "baseUrl": "./packages"
+    "baseUrl": "./packages",
+    "paths": {
+      "hostConfig": ["./react-reconciler/src/hostConfig.ts"]
+    }
   }
 }
