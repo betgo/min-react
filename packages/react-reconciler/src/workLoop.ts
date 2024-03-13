@@ -6,7 +6,7 @@ import { HostRoot } from './workTags';
 let workInProgress: FiberNode | null = null;
 
 function prepareFreshStack(root: FiberRootNode) {
-  workInProgress = createWorkInProgress(root.curent, {});
+  workInProgress = createWorkInProgress(root.current, {});
   return workInProgress;
 }
 
@@ -36,11 +36,19 @@ function renderRoot(root: FiberRootNode) {
       workLoop();
       break;
     } catch (e) {
-      console.log('workLoop error', e);
+      if (__DEV__) {
+        console.warn('workLoop发生错误', e);
+      }
       workInProgress = null;
     }
     // eslint-disable-next-line no-constant-condition
   } while (true);
+
+  const finishedWork = root.current.alternate;
+  root.finishedWork = finishedWork;
+
+  // wip.fiberNode树 渲染成dom树
+  commitRoot(root);
 }
 function workLoop() {
   while (workInProgress !== null) {
