@@ -3,6 +3,7 @@ import { dirname, resolve } from 'path';
 import { readFileSync } from 'fs';
 import ts from 'rollup-plugin-typescript2';
 import cjs from '@rollup/plugin-commonjs';
+import replace from '@rollup/plugin-replace';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -21,6 +22,12 @@ export function getPackageJson(pkgName) {
   return JSON.parse(str);
 }
 
-export function getBaseRollupPlugins({ typescript = {} } = {}) {
-  return [cjs(), ts()];
+export function getBaseRollupPlugins({
+  alias = {
+    __DEV__: true,
+    preventAssignment: true,
+  },
+  typescript = {},
+} = {}) {
+  return [replace(alias), cjs(), ts(typescript)];
 }

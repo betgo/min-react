@@ -12,7 +12,7 @@ export function createConatiner(container: Container) {
   return root;
 }
 export function updateContainer(element: ReactElementType | null, root: FiberRootNode) {
-  const hostRootFiber = root.curent;
+  const hostRootFiber = root.current;
   const update = createUpdate<ReactElementType | null>(element);
   enqueueUpdate(hostRootFiber.updateQueue as UpdateQueue<ReactElementType | null>, update);
   scheduleUpdateOnFiber(hostRootFiber);

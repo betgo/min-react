@@ -1,4 +1,4 @@
-import { appendInitialChild, createInstance, createTextInstance } from 'hostConfig';
+import { Instance, appendInitialChild, createInstance, createTextInstance } from 'hostConfig';
 import { FiberNode } from './fiber';
 import { HostComponent, HostRoot, HostText } from './workTags';
 import { NoFlags } from './fiberFlags';
@@ -43,7 +43,7 @@ export const completeWork = (wip: FiberNode) => {
   }
 };
 
-function appendAllChilren(parent: FiberNode, wip: FiberNode) {
+function appendAllChilren(parent: Instance, wip: FiberNode) {
   let node = wip.child;
   while (node !== null) {
     if (node?.tag === HostComponent || node?.tag === HostText) {
